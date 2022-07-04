@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(102, 118, 131);
+    margin: 0;
+}
+
+.content {
+    display: grid;
+}
+
+.hdr {
+    color: rgb(0, 0, 0);
+    background-color: white;
+    height: 8vh;
+    box-shadow: 25px 20px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.popup {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 30vh;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s, left 0.4s;
+
+}
+
+#addbtn {
+    padding: 10px;
+    width: 15%;
+}
+
+
+.open-popup {
+    position: fixed;
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+    left: 50;
+}
