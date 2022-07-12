@@ -5,6 +5,7 @@ body {
 
 .content {
     display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .hdr {
@@ -50,4 +51,21 @@ h1 {
     transform: translate(-50%, -50%) scale(1);
     top: 50%;
     left: 50;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 25vh;
+    height: 25vh;
+    border-radius: 25px;
+    text-align: center;
+    margin: 15px;
+    gap: 25px;
+}
+
+span {
+    margin: 15px;
 }
