@@ -8,6 +8,12 @@ body {
     grid-template-columns: repeat(5, 1fr);
 }
 
+#bookshelf {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+
 .hdr {
     color: rgb(0, 0, 0);
     background-color: white;
@@ -53,7 +59,20 @@ h1 {
     left: 50;
 }
 
+.new-card {
+    animation: append-animate .3s linear;
+}
 
+@keyframes append-animate {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;	
+	}
+}
 .card {
     display: flex;
     flex-direction: column;
@@ -61,9 +80,13 @@ h1 {
     width: 25vh;
     height: 25vh;
     border-radius: 25px;
+    box-shadow: 25px 20px;
     text-align: center;
     margin: 15px;
     gap: 25px;
+    opacity: 1;
+    transition: 1s;
+
 }
 
 span {

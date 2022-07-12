@@ -4,7 +4,7 @@ const popup = document.getElementById("popup")
 let authorInput = document.querySelector("#author")
 let titleInput = document.querySelector("#title")
 let pagesInput = document.querySelector("#pages")
-let content = document.querySelector("#content")
+let bookshelf = document.querySelector("#bookshelf")
 const closeopopupButton = document.getElementById("cancelbookbtn")
 const addButton = document.getElementById("addbtn")
 const addBookButton = document.getElementById("addbookbtn")
@@ -39,6 +39,8 @@ function displayError() {
 }
 
 function displayBooks() {
+
+  bookshelf.innerHTML = '';
   myLibrary.forEach((book) => {
 
     let card = document.createElement('div')
@@ -50,14 +52,12 @@ function displayBooks() {
     titleOutput.innerHTML = book.title;
     pagesOutput.innerHTML = book.pages;
     
-    content.appendChild(card)
+    bookshelf.appendChild(card)
     card.appendChild(authorOutput)
     card.appendChild(titleOutput)
     card.appendChild(pagesOutput)
 
-    card.classList.add('card')
-
-
+    card.classList.add('card', 'new-card')
   });
 }
 
@@ -71,7 +71,6 @@ function closePopup() {
 
 
 //runtime
-displayBooks();
-addButton.addEventListener("click", openPopup)
+addButton.addEventListener("click", openPopup) 
 closeopopupButton.addEventListener("click", closePopup)
 addBookButton.addEventListener("click", addBookToLibrary)
