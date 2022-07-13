@@ -21,7 +21,7 @@ function Book(author, title, pages, haveread) {
 function addBookToLibrary() {
   let author, title, pages
   if (authorInput.value == "") {
-    //TODO: ADD ERROR MESSAGES
+    displayError()
   }
   else {
     author = authorInput.value
@@ -35,7 +35,7 @@ function addBookToLibrary() {
 }
 
 function displayError() {
-
+//TODO: ADD ERROR MESSAGES
 }
 
 function displayBooks() {
@@ -43,20 +43,24 @@ function displayBooks() {
   bookshelf.innerHTML = '';
   myLibrary.forEach((book) => {
 
-    let card = document.createElement('div')
-    let authorOutput = document.createElement('span')
-    let titleOutput = document.createElement('span')
-    let pagesOutput = document.createElement('span')
+    let card = document.createElement('div');
+    let authorOutput = document.createElement('span');
+    let titleOutput = document.createElement('span');
+    let pagesOutput = document.createElement('span');
+    
 
+    
     authorOutput.innerHTML = book.author;
     titleOutput.innerHTML = book.title;
     pagesOutput.innerHTML = book.pages;
-    
+
+
     bookshelf.appendChild(card)
     card.appendChild(authorOutput)
     card.appendChild(titleOutput)
     card.appendChild(pagesOutput)
 
+    
     card.classList.add('card', 'new-card')
   });
 }
