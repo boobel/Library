@@ -1,14 +1,19 @@
 let myLibrary = [];
-let colors = ['red','green'];
+let colors = ['red',"rgb(169, 237, 154)"];
+let readmsg = ['NOT READ', 'READ']
 let index = 0;
 const popup = document.getElementById("popup")
 let authorInput = document.querySelector("#author")
 let titleInput = document.querySelector("#title")
 let pagesInput = document.querySelector("#pages")
+let havereadInput = document.querySelector("#haveread")
 let bookshelf = document.querySelector("#bookshelf")
 const closeopopupButton = document.getElementById("cancelbookbtn")
 const addButton = document.getElementById("addbtn")
 const addBookButton = document.getElementById("addbookbtn")
+var newNode = document.createElement('span')
+newNode.setAttribute('class','errormsg')
+
 
 function Book(author, title, pages, haveread) {
   this.author = author,
@@ -18,23 +23,55 @@ function Book(author, title, pages, haveread) {
 }
 
 function addBookToLibrary() {
-  let author, title, pages
+  let author, title, pages, haveread
   if (authorInput.value == "") {
-    displayError()
+    displayError(authorInput,'Please input author')
+    displayBooks()
   }
   else {
     author = authorInput.value
+    title = titleInput.value
+    pages = pagesInput.value
+
+    newNode.innerHTML = ''
+    newNode.remove()
+    let book = new Book(author, title, pages, haveread)
+    myLibrary.push(book)
+    closePopup()
+    displayBooks()
+
   }
-  title = titleInput.value
-  pages = pagesInput.value
-  let book = new Book(author, title, pages)
-  myLibrary.push(book)
-  closePopup()
-  displayBooks()
+  if(titleInput.value == ""){
+    displayError(titleInput,'Please input title')
+    displayBooks()
+  }
+  else {
+    title = titleInput.value
+  }
+  if (pagesInput.value == ""){
+    displayError(pagesInput,'Please input number of pages')
+    displayBooks()
+  }
+  else {
+    pages = pagesInput.value
+  }
+
+  haveread = null;
+  if(havereadInput.checked) {
+    haveread = true;
+    
+  }
+  else {
+    haveread = false;
+  }
+
+
 }
 
-function displayError() {
-//TODO: ADD ERROR MESSAGES
+function displayError(referenceNode, content) {
+  newNode.innerHTML = content
+  
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 function displayBooks() {
@@ -46,15 +83,28 @@ function displayBooks() {
     let authorOutput = document.createElement('span');
     let titleOutput = document.createElement('span');
     let pagesOutput = document.createElement('span');
-    let readBtn = document.createElement('button')
     let delBtn = document.createElement('button')
+    let readBtn = document.createElement('button')
+    delBtn.setAttribute('id', 'cardbtn')
+    readBtn.setAttribute('id', 'cardbtn')
+
 
     
     authorOutput.innerHTML = '"' + book.author + '"';
     titleOutput.innerHTML = book.title;
     pagesOutput.innerHTML = book.pages;
-    readBtn.innerHTML = "READ"
     delBtn.innerHTML="DELETE"
+
+    if(haveread === true) {
+      readBtn.innerHTML = 'READ'
+      readBtn.style.backgroundColor = 'rgb(169, 237, 154)'
+      index = 1;
+    }
+    else {
+      readBtn.innerHTML = 'NOT READ'
+      readBtn.style.backgroundColor = 'red'
+      index = 0;
+    }
 
 
     bookshelf.appendChild(card)
@@ -68,10 +118,17 @@ function displayBooks() {
     readBtn.classList.add('readbtn')
     card.classList.add('card', 'new-card')
 
+
     
     readBtn.addEventListener('click', function() {
       readBtn.style.backgroundColor = colors[index]
-      index = index >= colors.length -1 ? 0: index +1;
+      readBtn.innerHTML = readmsg[index]
+      index = index >= colors.length -1 ? 0: index+1 ? 1:index-1;
+    })
+
+    delBtn.addEventListener('click', function() {
+      myLibrary.pop()
+      displayBooks()
     })
   });
 }
