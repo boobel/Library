@@ -15,11 +15,14 @@ var newNode = document.createElement('span')
 newNode.setAttribute('class','errormsg')
 
 
-function Book(author, title, pages, haveread) {
-  this.author = author,
-  this.title = title,
-  this.pages = pages,
-  this.haveread = haveread
+class Book {
+  constructor(title, author, pages, haveread) {
+    this.author = author,
+    this.title = title,
+    this.pages = pages,
+    this.haveread = haveread
+  }
+  
 }
 
 function addBookToLibrary() {
